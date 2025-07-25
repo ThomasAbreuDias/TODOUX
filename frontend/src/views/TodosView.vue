@@ -7,3 +7,11 @@ import TodosContainer from '@/components/Todos/TodosContainer.vue'
    <TodosContainer />
   </div>
 </template>
+<style>
+@media (min-width: 1024px) {
+  .todos-container {
+    display: flex;
+    flex-direction: column;
+    }
+  }
+</style>
