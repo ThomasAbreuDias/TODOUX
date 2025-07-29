@@ -70,6 +70,7 @@ function handleDelete() {
   .edit-input {
     max-width: 60%;
   }
+
 @media (min-width: 1024px) {
   .todo-item {
     display: inline-flex;
@@ -78,6 +79,8 @@ function handleDelete() {
   }
   .todo-item > label {
     margin-right: 0.5em;
+    max-width: 60%;
+    color: white;
   }
   .todo-item > [type="checkbox"] {
     margin-right: 1em;
@@ -87,7 +90,7 @@ function handleDelete() {
   }
   .done {
     text-decoration: line-through;
-    color: gray;
+    color: gray !important;
   }
 }
 </style>

@@ -1,21 +1,24 @@
 <script setup>
+import { ref, onMounted, watch } from 'vue';
 import TodoItem from './TodoItem.vue'
-import { ref } from 'vue';
-</script>
-<script>
-const todos = ref([
-  { id: 1, title: 'My journey with Vue', done: false },
-  { id: 2, title: 'Blogging with Vue', done: true },
-  { id: 3, title: 'Why Vue is so fun', done: false }
-])
 
-
+const todos = ref([])
 const newTodo = ref('')
+
+onMounted(() => {
+  const stored = localStorage.getItem('todos')
+  if (stored) {
+    todos.value = JSON.parse(stored)
+  }
+})
+watch(todos, (newVal) => {
+  localStorage.setItem('todos', JSON.stringify(newVal))
+}, {deep: true})
 
 function addTodo() {
   if (newTodo.value.trim() !== '') {
     todos.value.push({
-      id: Date.now(), // id unique
+      id: Date.now(), 
       title: newTodo.value
     })
     newTodo.value = '' // Réinitialiser l’input
