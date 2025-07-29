@@ -21,17 +21,22 @@ function addTodo() {
     newTodo.value = '' // Réinitialiser l’input
   }
 }
+
+function updateTitle({ id, title }) {
+  let todo = todos.value.find(t => t.id === id)
+  if (todo) todo.title = title
+}
+
 function deleteTodo(id) {
-  console.log(id);
   todos.value = todos.value.filter(todo => todo.id !== id)
 }
 </script>
 <template>
-    <span>
-        <label for="todo-text">Add things to do </label>
-        <input type="text" id="todo-text" v-model="newTodo">
-        <button type="button" @click="addTodo">+</button>
-    </span>
+    <div class="todos-settings">
+        <label for="todo-text">Add things to do: </label>
+        <input type="text" id="todo-text" v-model="newTodo" @keyup.enter="addTodo">
+        <button type="button" @click="addTodo" >+</button>
+    </div>
     <div class="todos-container">
         <TodoItem 
           v-for="todo in todos" 
@@ -39,9 +44,15 @@ function deleteTodo(id) {
           :id="todo.id" 
           :title="todo.title" 
           v-model:done="todo.done"
+          @update:title="updateTitle"
           @delete="deleteTodo" 
         />
     </div>
 </template>
 
-
+<style>
+  .todos-container {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
