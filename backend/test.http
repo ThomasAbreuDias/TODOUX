@@ -1,0 +1,55 @@
+### Register
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+  "email": "test@demo.com",
+  "password": "azerty123"
+}
+
+### Login
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+  "email": "test@demo.com",
+  "password": "azerty123"
+}
+
+### Copier ici le token reçu ci-dessous
+@token = 
+
+###
+
+### GET – Lister mes todos
+GET http://localhost:3000/api/todos
+Authorization: Bearer {{token}}
+
+###
+
+### POST – Ajouter une todo
+POST http://localhost:3000/api/todos
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Terminer le projet "
+}
+
+###
+
+### PUT – Modifier une todo
+PUT http://localhost:3000/api/todos/REPLACE_TODO_ID
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Todo mise à jour",
+  "done": true
+}
+
+###
+
+### DELETE – Supprimer une todo
+DELETE http://localhost:3000/api/todos/REPLACE_TODO_ID
+Authorization: Bearer {{token}}
